@@ -6,8 +6,8 @@ change the way we interact with standard data structures.
 
 # Data Structures
 
-- [OStack](#ostack-usage)
-- [OQueue](#oqueue-usage)
+- [OStack](#ostack)
+- [OQueue](#oqueue)
 
 ## OStack
 
