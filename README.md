@@ -6,6 +6,9 @@ change the way we interact with standard data structures.
 
 # Data Structures
 
+- [OStack](#ostack-usage)
+- [OQueue](#oqueue-usage)
+
 ## OStack
 
 ### Stack Usage
@@ -57,7 +60,7 @@ use of Optionals.
 Using an OStack, we can now implement a for loop like so: 
 
 ```java
-for (Optional<Integer> i = stack.pop(); i.isPresent(); i = stack.pop()) {
+for (Optional<Integer> i = ostack.pop(); i.isPresent(); i = ostack.pop()) {
     System.out.println(i.get());
 }
 ```
@@ -70,4 +73,53 @@ The output of this operation with the inputs seen previously, `{0,1,2,3}`, we ge
 2
 1
 0
+```
+
+## OQueue
+
+### Queue Usage
+
+The same concept mentioned for Stack also applies to Queue:
+
+Queue: `{0,1,2,3}`
+
+```java
+for (Integer i = queue.remove(); !queue.isEmpty(); i = queue.remove()) {
+    System.out.println(i);
+}
+```
+
+Output:
+
+```bash
+0
+1
+2
+```
+
+Like in Stack, changing the loop condition to `i != null` will produce an exception (`NoSuchElementException`):
+
+```java
+for (Integer i = queue.remove(); i != null; i = queue.remove()) {
+    System.out.println(i);
+}
+```
+
+### OQueue Usage
+
+OQueue: `{0,1,2,3}`
+
+```java
+for (Optional<Integer> i = oqueue.remove(); i.isPresent(); i = oqueue.remove()) {
+    System.out.println(i.get())
+}
+```
+
+Output:
+
+```bash
+0
+1
+2
+3
 ```

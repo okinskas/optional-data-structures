@@ -36,7 +36,6 @@
             <version>5.4.2</version>
             <scope>test</scope>
         </dependency>
-        <!--Comment this out locally to prevent IntelliJ conflicting versions of JUnit-->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
