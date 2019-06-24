@@ -21,6 +21,6 @@ public class OQueue<E> {
 
     public Optional<E> remove() {
         if (queue.isEmpty()) return Optional.empty();
-        return Optional.of(queue.remove());
+        return Optional.ofNullable(queue.remove());
     }
 }

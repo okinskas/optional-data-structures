@@ -11,7 +11,7 @@ import static org.junit.Assert.assertFalse;
 
 public class OStackTest {
 
-    OStack<Integer> stack;
+    private OStack<Integer> stack;
 
     @BeforeEach
     public void init() {

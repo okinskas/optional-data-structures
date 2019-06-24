@@ -24,7 +24,7 @@ public class OStack<E> {
      * @return The {@code item} argument wrapped in an Optional.
      */
     public Optional<E> push(E item) {
-        return Optional.of(stack.push(item));
+        return Optional.ofNullable(stack.push(item));
     }
 
     /**
@@ -35,7 +35,7 @@ public class OStack<E> {
      */
     public synchronized Optional<E> pop() {
         if (stack.empty()) return Optional.empty();
-        return Optional.of(stack.pop());
+        return Optional.ofNullable(stack.pop());
     }
 
     /**

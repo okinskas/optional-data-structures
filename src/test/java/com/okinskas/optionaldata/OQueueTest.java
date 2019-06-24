@@ -11,7 +11,7 @@ import static org.junit.Assert.assertFalse;
 
 public class OQueueTest {
 
-    OQueue<Integer> queue;
+    private OQueue<Integer> queue;
 
     @BeforeEach
     public void init() {
@@ -19,12 +19,12 @@ public class OQueueTest {
     }
 
     @Test
-    public void shouldMakeEmptyOStackAndPeek() {
+    public void shouldMakeEmptyOQueueAndPeek() {
         assertFalse(queue.peek().isPresent());
     }
 
     @Test
-    public void shouldMakeEmptyOStackAndPop() {
+    public void shouldMakeEmptyOQueueAndPop() {
         assertFalse(queue.remove().isPresent());
     }
 
