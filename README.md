@@ -1,17 +1,26 @@
 # optional-data-structures
-Optional interface wrappers (or full implementations) for common data structures.
 
-This project aims to explore how the Optional class can be incorporated to
-change the way we interact with standard data structures.
+Optional interface wrappers for common data structures. This project aims to explore how the Optional class
+can be incorporated to change the way we interact with standard data structures. The underlying data
+structures remain unchanged with only the API differing by providing Optional-based interactions.
+
+A common problem the Optional class aims to solve is relying on a developer to perform null-checking
+on potentially nullable values. Any values returned that are potentially null can cause NullPointerExceptions
+if their methods are invoked. Optional acts as a contract between developers and the API to enforce checks in
+scenarios where it is needed; with `null`, there is nothing that prevents the developer from not checking.
+
+It goes without saying that this approach is not strictly better or worse thant the standard;
+this project simply aims to explore an alternative approach.
 
 # Data Structures
 
 - [OStack](#ostack)
 - [OQueue](#oqueue)
+- [OMap](#omap)
 
 ## OStack
 
-### Stack Usage
+### Stack Usage Problems
 Typical usage of a Stack might look like the following:
 
 ```java
@@ -51,7 +60,7 @@ i = stack.pop()         // updates i = 0
 
 As a result, the execution of the body for the 0 element is skipped.
 
-### OStack Usage
+### Solution: OStack Usage
 
 The `OStack` data structure provides the same interface as the typical Stack but returns
 Optional objects as opposed to the object itself. It does not provide an `empty()` method due to the
@@ -77,9 +86,9 @@ The output of this operation with the inputs seen previously, `{0,1,2,3}`, we ge
 
 ## OQueue
 
-### Queue Usage
+### Queue Usage Problems
 
-The same concept mentioned for Stack also applies to Queue:
+The same concepts mentioned for Stack also apply to Queue:
 
 Queue: `{0,1,2,3}`
 
@@ -97,15 +106,7 @@ Output:
 2
 ```
 
-Like in Stack, changing the loop condition to `i != null` will produce an exception (`NoSuchElementException`):
-
-```java
-for (Integer i = queue.remove(); i != null; i = queue.remove()) {
-    System.out.println(i);
-}
-```
-
-### OQueue Usage
+### Solution: OQueue Usage
 
 OQueue: `{0,1,2,3}`
 
@@ -123,3 +124,44 @@ Output:
 2
 3
 ```
+
+# OMap
+
+## Map Usage Problems
+
+When using a Map, we very frequently perform null checking or unintentionally invoke
+methods on a nullable element:
+
+```java
+List list = map.get(0);
+if (list != null) {
+    list.add(56)
+}
+```
+
+This requires developers to remember to null-check which goes against what was discussed
+in the [header](#optional-data-structures).
+
+We also have tools for more functional-style approaches:
+
+```java
+map.computeIfPresent(0, (k, list) -> {
+    list.add(56);
+    return list;
+})
+```
+
+This seems cleaner although using the OMap can improve it further.
+
+## Solution: OMap Usage
+
+With the OMap, we can implement the code seen above in the following way:
+
+```java
+map.get(0).ifPresent(list -> list.add(56));
+```
+
+The computeIfPresent method requires the user to have domain knowledge about the arguments
+and the need for the return statement. I'd argue this is more clear for the use-case and
+is more descriptive at a glance.
+
