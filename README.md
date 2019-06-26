@@ -84,6 +84,11 @@ The output of this operation with the inputs seen previously, `{0,1,2,3}`, we ge
 0
 ```
 
+Aside: 
+
+The only difference in functionality is that OStack does not permit pushing `null` onto the stack as
+this prevents the API design from operating as intended (i.e. early break from loops when encountering a `null`).
+
 ## OQueue
 
 ### Queue Usage Problems
@@ -124,6 +129,12 @@ Output:
 2
 3
 ```
+
+Aside: 
+
+The only difference in functionality is that OQueue does not permit adding `null` to the queue as
+this prevents the API design from operating as intended (i.e. early break from loops when encountering a `null`).
+
 
 # OMap
 

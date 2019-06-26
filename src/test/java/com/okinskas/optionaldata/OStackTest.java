@@ -65,4 +65,16 @@ public class OStackTest {
         stack.push(3);
         assertEquals(stack.search(1), 3);
     }
+
+    @Test
+    public void shouldThrowIllegalArgumentExceptionWhenPushingNull() {
+        boolean exceptionOccurred = false;
+        try {
+            stack.push(null);
+        } catch (IllegalArgumentException e) {
+            exceptionOccurred = true;
+        }
+
+        assertTrue(exceptionOccurred);
+    }
 }

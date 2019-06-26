@@ -22,20 +22,22 @@ public class OStack<E> {
      * Pushes an element to the top of the stack.
      * @param item the item to be pushed onto the stack.
      * @return The {@code item} argument wrapped in an Optional.
+     * @throws IllegalArgumentException cannot add null value to the stack
      */
     public Optional<E> push(E item) {
+        if (item == null) throw new IllegalArgumentException("Cannot add null value to OStack.");
         return Optional.ofNullable(stack.push(item));
     }
 
     /**
      * Removes the object from the top of the stack and returns it
-     * as a nullable Optional. If the stack is empty, this returns
+     * as an Optional. If the stack is empty, this returns
      * and an empty Optional.
      * @return The object at the top of the stack as an Optional.
      */
     public synchronized Optional<E> pop() {
         if (stack.empty()) return Optional.empty();
-        return Optional.ofNullable(stack.pop());
+        return Optional.of(stack.pop());
     }
 
     /**

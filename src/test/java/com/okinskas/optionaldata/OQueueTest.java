@@ -56,4 +56,16 @@ public class OQueueTest {
 
         assertFalse(queue.remove().isPresent());
     }
+
+    @Test
+    public void shouldThrowIllegalArgumentExceptionWhenAddingNull() {
+        boolean exceptionOccurred = false;
+        try {
+            queue.add(null);
+        } catch (IllegalArgumentException e) {
+            exceptionOccurred = true;
+        }
+
+        assertTrue(exceptionOccurred);
+    }
 }
